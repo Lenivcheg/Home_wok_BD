@@ -42,11 +42,11 @@ where yer_of_release between 1995 and 2030
 
 --Так тоже не сработало
 
-select title, yer_of_release, count(s.id)  from album a
-join song s on a.id = s.id
+select title, yer_of_release, count(s.name)  from album a
+left join song s on a.id  = s.album_id
 where yer_of_release between 1995 and 2012
-group by a.title , a.yer_of_release
-;
+group by a.title , a.yer_of_release;
+
 -- Средняя продолжительность треков по каждому альбому.
 
 select avg(duration), title  from song s
