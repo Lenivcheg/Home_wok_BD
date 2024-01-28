@@ -51,15 +51,14 @@ group by a.title , a.yer_of_release;
 
 select avg(duration), title  from song s
 join album a on s.album_id  = a.id
-group by title
-;
+group by title;
 -- Все исполнители, которые не выпустили альбомы в 2020 году.
 
-select name from performer p
-join performer_album pa on p.id = pa.performer_id
-join album a on a.id = pa.performer_id
-where a.yer_of_release < 2000
-;
+select p.name from performer p
+left join performer_album pa on p.id = pa.performer_id
+left join album a on pa.album_id = a.id
+where a.yer_of_release < 2011;
+
 -- Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).
 
 select c.title from collection c
