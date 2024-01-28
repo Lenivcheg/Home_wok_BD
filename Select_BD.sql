@@ -50,7 +50,7 @@ group by a.title , a.yer_of_release;
 -- Средняя продолжительность треков по каждому альбому.
 
 select avg(duration), title  from song s
-join album a on s.id = a.id
+join album a on s.album_id  = a.id
 group by title
 ;
 -- Все исполнители, которые не выпустили альбомы в 2020 году.
