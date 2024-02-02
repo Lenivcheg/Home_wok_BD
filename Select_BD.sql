@@ -1,7 +1,7 @@
--- Название и продолжительность самого длительного трека.
-select name, duration  from song
-order by duration desc
-limit 1;
+-- Название и продолжительность самого длительного трека.(Поправил,
+-- сделал с вложенным запросом.)
+select  name, duration from song
+where duration >= (select max(duration) from song)
 
 select max(duration) from song;
 
@@ -52,12 +52,14 @@ group by a.title , a.yer_of_release;
 select avg(duration), title  from song s
 join album a on s.album_id  = a.id
 group by title;
--- Все исполнители, которые не выпустили альбомы в 2020 году.
 
-select p.name from performer p
-left join performer_album pa on p.id = pa.performer_id
-left join album a on pa.album_id = a.id
-where a.yer_of_release < 2011;
+-- Все исполнители, которые не выпустили альбомы в 2020 (1997) году.
+
+select name from performer p
+left join performer_album pa on pa.performer_id = p.id
+left join album a on a.id = pa.album_id
+where yer_of_release not between 1996 and 1998
+;
 
 -- Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).
 
