@@ -33,12 +33,10 @@ left join ganere_performer gp on g.id = gp.ganere_id
 group by name;
 
 --Количество треков, вошедших в альбомы 2019–2020 годов.
--- почему то не отображает корректно, вместо 6и треков 3 ???
 
 select count(name)  from song s
-full join album a on s.id = a.id
-where yer_of_release between 1995 and 2030
-;
+full join album a on s.album_id  = a.id
+where yer_of_release between 1996 and 2000;
 
 --Так тоже не сработало
 
@@ -58,8 +56,7 @@ group by title;
 select name from performer p
 left join performer_album pa on pa.performer_id = p.id
 left join album a on a.id = pa.album_id
-where yer_of_release not between 1996 and 1998
-;
+where yer_of_release not between 1996 and 1998;
 
 -- Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).
 
@@ -69,6 +66,5 @@ left join song s on sc.song_id = s.id
 left join album a on s.album_id =  a.id
 left join performer_album pa on a.id = pa.album_id
 left join performer p on pa.performer_id = p.id
---where p.name = "Ferry"
-;
+where p."name" = 'Zack Knight';
 
