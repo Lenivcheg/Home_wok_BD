@@ -160,5 +160,7 @@ insert into song_collection
 insert into song_collection
 	VALUES(6,1);
 
-
+Insert into performer_album (performer_id, album_id) values (1, 2);
+Insert into performer_album (performer_id, album_id) values (3, 1);
+Insert into performer_album (performer_id, album_id) values (6, 3);
 

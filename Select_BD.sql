@@ -54,9 +54,10 @@ group by title;
 -- Все исполнители, которые не выпустили альбомы в 2020 (1997) году.
 
 select name from performer p
+where p.id not in (select p.id from performer p2
 left join performer_album pa on pa.performer_id = p.id
 left join album a on a.id = pa.album_id
-where yer_of_release not between 1996 and 1998;
+where yer_of_release = 1997)
 
 -- Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).
 
